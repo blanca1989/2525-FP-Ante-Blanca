@@ -1,4 +1,4 @@
-# Usamos la misma estructura de clase que definiste
+# --- CLASE PRODUCTO (Tu código original) ---
 class Producto:
     def __init__(self, nombre, precio, cantidad):
         self.nombre = nombre
@@ -8,47 +8,42 @@ class Producto:
     def agregar_cantidad(self, cantidad):
         if cantidad > 0:
             self.cantidad += cantidad
-            print(f"📦 STOCK: Se han recibido {cantidad} unidades de '{self.nombre}'.")
+            print(f"📚 INGRESO: Se han recibido {cantidad} copias de '{self.nombre}'.")
         else:
-            print("⚠️ Error: La cantidad a agregar debe ser mayor a 0.")
+            print("La cantidad a agregar debe ser mayor que 0.")
 
     def eliminar_cantidad(self, cantidad):
         if cantidad > 0 and self.cantidad >= cantidad:
             self.cantidad -= cantidad
-            print(f"🛒 VENTA: Se han retirado {cantidad} unidades de '{self.nombre}'.")
+            print(f"📖 VENTA: Se han vendido {cantidad} copias de '{self.nombre}'.")
         elif cantidad <= 0:
-            print("⚠️ Error: La cantidad a eliminar debe ser mayor a 0.")
+            print("La cantidad a eliminar debe ser mayor que 0.")
         else:
-            print(f"❌ ERROR: Stock insuficiente de '{self.nombre}'. Solo quedan {self.cantidad}.")
+            print(f"⚠️ AGOTADO: No hay suficientes copias de '{self.nombre}' para vender {cantidad}.")
 
     def mostrar_informacion(self):
-        print("-" * 30)
-        print(f"PRODUCTO: {self.nombre}")
-        print(f"PRECIO:   ${self.precio:,.2f}")
-        print(f"STOCK:    {self.cantidad} unidades")
-        print("-" * 30)
+        print(f"Título: {self.nombre} | Precio: ${self.precio:.2f} | Stock: {self.cantidad}")
 
-# --- NUEVO EJEMPLO: TIENDA DE TECNOLOGÍA ---
+# --- EJECUCIÓN CON EJEMPLO DE LIBRERÍA ---
 
-# 1. Creamos los nuevos objetos (Instancias)
-laptop = Producto("Laptop Gamer Pro", 1200.00, 5)
-smartphone = Producto("iPhone 15", 999.00, 10)
-audifonos = Producto("Sony WH-1000XM5", 350.50, 8)
+# 1. Creamos los libros (Instancias)
+libro1 = Producto("Cien años de soledad", 25.50, 5)
+libro2 = Producto("Don Quijote de la Mancha", 18.00, 3)
+libro3 = Producto("El Principito", 12.99, 20)
 
-# 2. Realizamos operaciones
-print("--- INICIO DE OPERACIONES ---")
+print("--- REGISTRO DE MOVIMIENTOS ---")
 
-# Reponemos stock de laptops
-laptop.agregar_cantidad(2)
+# Llega un nuevo pedido para reponer el Quijote
+libro2.agregar_cantidad(7)
 
-# Vendemos varios iPhones
-smartphone.eliminar_cantidad(4)
+# Vendemos 2 copias de Cien años de soledad
+libro1.eliminar_cantidad(2)
 
-# Intentamos vender más audífonos de los que hay (esto probará tu validación)
-audifonos.eliminar_cantidad(15)
+# Intentamos vender 25 copias de El Principito (Supera el stock)
+libro3.eliminar_cantidad(25)
 
-# 3. Mostramos el estado final de los productos
-print("\n--- RESUMEN DE INVENTARIO FINAL ---")
-laptop.mostrar_informacion()
-smartphone.mostrar_informacion()
-audifonos.mostrar_informacion()
+print("\n--- INVENTARIO ACTUALIZADO ---")
+# Mostramos la información de todos los libros
+libro1.mostrar_informacion()
+libro2.mostrar_informacion()
+libro3.mostrar_informacion()
